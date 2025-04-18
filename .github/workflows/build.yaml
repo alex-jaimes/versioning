@@ -10,4 +10,4 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           source version
-          echo "Version: $major.$minor.$patch.${{ github.run_id }}"
+          echo "Version: $major.$minor.$patch.${{ github.run_number }}"
