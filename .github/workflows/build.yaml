@@ -1,8 +1,13 @@
 name: build-application
+
 on: [push]
+
 jobs:
   build-app:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
       - run: |
-          echo "Hello World"
+          source version
+          echo "Hello World: $major"
