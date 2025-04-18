@@ -1,0 +1,8 @@
+name: build-application
+on: [push]
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Hello World"
