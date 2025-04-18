@@ -8,7 +8,20 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: |
+      - name: Generate Version
+        id: get-version
+        run: |
           source version
           version=$major.$minor.$patch.${{ github.run_number }}
           echo "Version: $version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Create tag with version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ steps.get-version.outputs.version }}',
+              sha: context.sha
+            })
