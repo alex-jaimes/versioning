@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Generate Version - ${{ steps.get-version.outputs.version }}
+      - name: Generate Version
         id: get-version
         run: |
           source version
